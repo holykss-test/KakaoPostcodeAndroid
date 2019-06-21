@@ -36,6 +36,10 @@ class KakaoPostcodeActivity : BaseWebViewActivity() {
 
         openWebView()
 
+        toggleLoadFrom.setOnClickListener {
+            openWebView()
+        }
+
         buttonOpen.setOnClickListener {
             openWebView()
         }
@@ -56,13 +60,8 @@ class KakaoPostcodeActivity : BaseWebViewActivity() {
     }
 
     private fun openWebView() {
-        /**
-         * 다음 우편번호 자바스크립트가 실행까지는 되나, 로딩 도중에 오류가 나는 것 같음.
-         */
 
-        val LOAD_FROM_URL = false
-
-        if (LOAD_FROM_URL) {
+        if (toggleLoadFrom.isChecked) {
             openUrl()
         } else {
             openData()
@@ -79,7 +78,7 @@ class KakaoPostcodeActivity : BaseWebViewActivity() {
             <!--autoload=false 파라미터를 이용하여 자동으로 로딩되는 것을 막습니다.-->
             <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false"></script>
             <script>
-                window.android.onStartScript("Start Script");
+                window.android.onStartScript("Start Script from local data");
                 //load함수를 이용하여 core스크립트의 로딩이 완료된 후, 우편번호 서비스를 실행합니다.
                 daum.postcode.load(function(){
                     new daum.Postcode({
