@@ -85,7 +85,7 @@ class KakaoPostcodeActivity : BaseWebViewActivity() {
                         oncomplete: function(data) {
                             window.android.onReceiveData(JSON.stringify(data));
                         }
-                    }).open();
+                    }).embed();
                 });
             </script>
             """
